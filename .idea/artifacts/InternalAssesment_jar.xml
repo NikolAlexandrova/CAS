@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="InternalAssesment:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/InternalAssesment_jar</output-path>
+    <root id="archive" name="InternalAssesment.jar">
+      <element id="module-output" name="InternalAssesment" />
+      <element id="dir-copy" path="$PROJECT_DIR$/Photos" />
+    </root>
+  </artifact>
+</component>
