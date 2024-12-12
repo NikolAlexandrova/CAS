@@ -6,3 +6,4 @@ petko@gmail.com	123	To do	Doing	Not selected	To do	Done	To do	To do	Doing	Done
 boris@gmail.com	123	Done	To do	Not selected	To do	Doing	Done	To do	Done	To do	
 petko	12	Not selected	Not selected	Not selected	Not selected	Not selected	Not selected	Not selected	Not selected	Not selected	
 n1kol1vay@gmail.com	tr	Not selected	Not selected	Not selected	Not selected	Not selected	Not selected	Done	To do	Doing	
+n1kol1vay@gmail.com	parola123	To do	Done	To do	Not selected	Not selected	Not selected	Not selected	Not selected	Not selected	

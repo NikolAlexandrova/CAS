@@ -10,66 +10,82 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 
-public class StudentOptions extends JFrame implements ActionListener{
-    private JFrame frame = new JFrame("Choose an option");
-    private JButton creativity = new JButton("Creativity");
-    private JButton activity = new JButton("Activity");
-    private JButton service = new JButton("Service");
-    private URL creativityPath = getClass().getResource("resources/creativity.jpg");
-    private ImageIcon creativityImgIcon = new ImageIcon(creativityPath);
-    private JLabel creativityImgLbl = new JLabel(creativityImgIcon);
-    private URL activityPath = getClass().getResource("resources/activity.jpg");
-    private ImageIcon activityImgIcon = new ImageIcon(activityPath);
-    private JLabel activityImgLbl = new JLabel(activityImgIcon);
-    private URL servicePath = getClass().getResource("resources/service.jpg");
-    private ImageIcon serviceImgIcon = new ImageIcon(servicePath);
-    private JLabel serviceImgLbl = new JLabel(serviceImgIcon);
+public class StudentOptions extends JFrame implements ActionListener {
 
-    public StudentOptions(){
+    private JFrame frame = new JFrame("Choose an option");
+    private JButton creativityButton = new JButton("Creativity");
+    private JButton activityButton = new JButton("Activity");
+    private JButton serviceButton = new JButton("Service");
+
+    // Constants for layout
+    private static final int FRAME_WIDTH = 500;
+    private static final int FRAME_HEIGHT = 250;
+    private static final int BUTTON_WIDTH = 120;
+    private static final int BUTTON_HEIGHT = 30;
+
+    public StudentOptions() {
+        setupFrame();
+        setupLabels();
+        setupButtons();
+    }
+
+    private void setupFrame() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(500, 350, 500,250 );
+        frame.setBounds(500, 350, FRAME_WIDTH, FRAME_HEIGHT);
         frame.setLayout(null);
         frame.setVisible(true);
         frame.setResizable(false);
         frame.getContentPane().setBackground(Color.WHITE);
+    }
 
-        creativityImgLbl.setBounds(20, 20, 150, 100);
-        frame.add(creativityImgLbl);
+    private void setupLabels() {
+        frame.add(createImageLabel("resources/creativity.jpg", 20, 20, 150, 100));
+        frame.add(createImageLabel("resources/activity.jpg", 180, 40, 135, 75));
+        frame.add(createImageLabel("resources/service.jpg", 310, 40, 140, 85));
+    }
 
-        activityImgLbl.setBounds(180, 40, 135, 75);
-        frame.add(activityImgLbl);
+    private JLabel createImageLabel(String resourcePath, int x, int y, int width, int height) {
+        URL path = getClass().getResource(resourcePath);
+        ImageIcon imgIcon = new ImageIcon(path);
+        JLabel imgLabel = new JLabel(imgIcon);
+        imgLabel.setBounds(x, y, width, height);
+        return imgLabel;
+    }
 
-        serviceImgLbl.setBounds(310, 40, 140, 85);
-        frame.add(serviceImgLbl);
+    private void setupButtons() {
+        configureButton(creativityButton, 40, 150, e -> openCreativityWindow());
+        configureButton(activityButton, 180, 150, e -> openActivityWindow());
+        configureButton(serviceButton, 330, 150, e -> openServiceWindow());
+    }
 
-        creativity.setBounds(40, 150, 120, 30 );
-        creativity.setFocusable(false);
-        creativity.addActionListener(this);
-        frame.add(creativity);
+    private void configureButton(JButton button, int x, int y, ActionListener action) {
+        button.setBounds(x, y, BUTTON_WIDTH, BUTTON_HEIGHT);
+        button.setFocusable(false);
+        button.addActionListener(action);
+        frame.add(button);
+    }
 
-        activity.setBounds(180, 150, 120, 30 );
-        activity.setFocusable(false);
-        activity.addActionListener(this);
-        frame.add(activity);
+    private void openCreativityWindow() {
+        frame.dispose();
+        new Creativity();
+    }
 
-        service.setBounds(330, 150, 120, 30 );
-        service.setFocusable(false);
-        service.addActionListener(this);
-        frame.add(service);
+    private void openActivityWindow() {
+        frame.dispose();
+        new Activity();
+    }
 
-        }
-    public void actionPerformed(ActionEvent e){
-        if (e.getSource() == creativity){
-            frame.dispose();
-            Creativity myWindow = new Creativity();
-        }
-        if (e.getSource() == activity){
-            frame.dispose();
-            Activity myWindow = new Activity();
-        }
-        if (e.getSource() == service){
-            frame.dispose();
-            Service myWindow = new Service();
-        }
+    private void openServiceWindow() {
+        frame.dispose();
+        new Service();
+    }
+    public JFrame getFrame() {
+        return frame;
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // No need for this method since actions are handled directly in button configuration
     }
 }
